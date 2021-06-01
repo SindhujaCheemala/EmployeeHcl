@@ -24,29 +24,29 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeServiceImpl emp;
 
-	@GetMapping("/api/employees")
+	@GetMapping("/displayEmployees")
 	public ResponseEntity<List<Employee>> employeesList() {
 		return new ResponseEntity<List<Employee>>(emp.employeesList(), HttpStatus.CREATED);
 	}
 
-	@PostMapping("/api/employees")
+	@PostMapping("/addEmployee")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee e) throws IdException {
 		return new ResponseEntity<Employee>(emp.addEmployee(e), HttpStatus.CREATED);
 
 	}
 
-	@GetMapping("/api/employees/{Id}")
+	@GetMapping("/searchEmployee/{Id}")
 	public ResponseEntity<Employee> searchEmployeeById(@PathVariable int Id) throws IdException {
 		return new ResponseEntity<Employee>(emp.searchEmployeeById(Id), HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("/api/employees/{Id}")
+	@DeleteMapping("/deleteEmployee/{Id}")
 	public ResponseEntity<Boolean> deleteEmployee(@PathVariable int Id) throws IdException {
 		return new ResponseEntity<Boolean>(emp.deleteEmployee(Id), HttpStatus.CREATED);
 
 	}
 
-	@PutMapping("/api/employees/{Id}")
+	@PutMapping("/updateEmployee/{Id}")
 	public ResponseEntity<Boolean> updateEmployee(@PathVariable int Id, @RequestBody Employee e) throws IdException {
 		return new ResponseEntity<Boolean>(emp.updateEmployee(e, Id), HttpStatus.CREATED);
 	}
